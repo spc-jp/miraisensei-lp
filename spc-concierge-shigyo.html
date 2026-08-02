@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPCコンシェルジュ｜士業事務所さまへ</title>
+<meta name="description" content="税理士事務所さま向けのAI相談コンシェルジュ。まず気軽に聞く・デモを触る・無料相談・LINE相談まで、やさしくご案内します。">
+
+<!-- ================= アイコン（favicon） ================= -->
+<link rel="icon" type="image/png" href="https://spc-jp.github.io/spc-concierge/favicon.png">
+<link rel="apple-touch-icon" href="https://spc-jp.github.io/spc-concierge/favicon.png">
+<meta name="theme-color" content="#223670">
+
+<!-- ================= SNS・LINEシェア時のプレビュー（OGP） ================= -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SPCコンシェルジュ">
+<meta property="og:title" content="SPCコンシェルジュ｜顔の見えるAI相談窓口">
+<meta property="og:description" content="税理士への相談は敷居が高い。その不安に、AIコンシェルジュがやさしく寄り添い、デモ・無料相談・LINEへご案内します。">
+<meta property="og:url" content="https://spc-jp.github.io/spc-concierge/">
+<meta property="og:image" content="https://spc-jp.github.io/spc-concierge/favicon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SPCコンシェルジュ｜顔の見えるAI相談窓口">
+<meta name="twitter:description" content="AIコンシェルジュが、相談のやさしい入口になります。まずは気軽にどうぞ。">
+<meta name="twitter:image" content="https://spc-jp.github.io/spc-concierge/favicon.png">
+
+<!-- ================= フォント（Noto Serif JP / Noto Sans JP） ================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* ==== ブランドカラー（ここを変えれば全体の色が変わります） ==== */
+  --navy:#223670;
+  --navy-deep:#182a58;
+  --gold:#D0A900;
+  --gold-soft:#e9d47a;
+  --line-green:#06C755;
+  --bot-bubble:#eef1f7;
+  --ink:#2a2a2a;
+  --ink-soft:#6a7080;
+  --white:#ffffff;
+  --edge:#e6e9f1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Noto Sans JP",sans-serif;color:var(--ink);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 14px;
+  background:radial-gradient(circle at 20% 15%,#2b4488 0%,var(--navy) 40%,var(--navy-deep) 100%);
+  -webkit-font-smoothing:antialiased;
+}
+/* 背景の星のような点 */
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 22%,rgba(255,255,255,.7),transparent),
+    radial-gradient(1.5px 1.5px at 78% 12%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1.5px 1.5px at 45% 60%,rgba(255,255,255,.4),transparent),
+    radial-gradient(1.5px 1.5px at 88% 72%,rgba(255,255,255,.55),transparent),
+    radial-gradient(1.5px 1.5px at 30% 85%,rgba(255,255,255,.4),transparent);
+}
+
+/* ================= ウィジェット本体 ================= */
+.widget{
+  width:100%;max-width:410px;background:var(--white);border-radius:22px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);position:relative;z-index:1;
+  display:flex;flex-direction:column;max-height:92vh;
+}
+
+/* ヘッダー */
+.w-head{
+  background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);
+  color:#fff;padding:18px 20px;display:flex;align-items:center;gap:12px;position:relative;
+}
+.w-logo{
+  flex:0 0 auto;width:46px;height:46px;border-radius:12px;overflow:hidden;background:var(--white);
+  box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+.w-logo img{width:100%;height:100%;object-fit:cover;display:block;}
+.w-title{flex:1;}
+.w-title h1{font-size:1.02rem;font-weight:700;line-height:1.3;}
+.w-title span{font-size:.72rem;color:var(--gold-soft);letter-spacing:.06em;}
+.w-close{
+  background:none;border:none;color:rgba(255,255,255,.7);font-size:1.4rem;cursor:pointer;
+  line-height:1;padding:4px;transition:color .15s ease;
+}
+.w-close:hover{color:#fff;}
+
+/* チャット領域 */
+.w-body{
+  padding:20px 18px 8px;overflow-y:auto;flex:1;background:var(--white);
+}
+.bubble{
+  max-width:88%;padding:13px 16px;border-radius:16px;font-size:.92rem;line-height:1.75;
+  margin-bottom:12px;animation:pop .25s ease;
+}
+.bubble.bot{background:var(--bot-bubble);color:var(--ink);border-bottom-left-radius:5px;}
+.bubble.user{
+  background:var(--navy);color:#fff;margin-left:auto;border-bottom-right-radius:5px;
+}
+/* みらい先生アバター付きの返答 */
+.bot-row{display:flex;gap:10px;align-items:flex-end;margin-bottom:12px;}
+.bot-row .bubble.bot{margin-bottom:0;}
+.bot-avatar{
+  flex:0 0 auto;width:38px;height:38px;border-radius:50%;border:2px solid var(--gold-soft);
+  background-color:#fff;background-repeat:no-repeat;
+  background-image:url("https://spc-jp.github.io/spc-concierge/miraisensei.png");
+  background-size:175%;background-position:52% 6%;
+}
+@keyframes pop{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* メニュー（選択肢） */
+.menu{display:flex;flex-direction:column;gap:9px;margin:4px 0 14px;}
+.menu-btn{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;
+  background:var(--white);border:1px solid var(--edge);border-radius:13px;
+  padding:13px 15px;font-size:.9rem;font-weight:500;color:var(--ink);font-family:inherit;
+  transition:border-color .15s ease, box-shadow .15s ease, transform .1s ease;
+}
+.menu-btn:hover{border-color:var(--gold);box-shadow:0 4px 14px rgba(34,54,112,.1);transform:translateY(-1px);}
+.menu-btn .num{
+  flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;
+}
+
+/* チャット内CTA */
+.cta-in{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:.92rem;
+  padding:13px 22px;border-radius:12px;margin:2px 0 14px;animation:pop .3s ease;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.cta-in.gold{background:var(--gold);color:var(--navy);box-shadow:0 6px 18px rgba(208,169,0,.35);}
+.cta-in.gold:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(208,169,0,.45);}
+.cta-in.green{background:var(--line-green);color:#fff;box-shadow:0 6px 18px rgba(6,199,85,.3);}
+.cta-in.green:hover{transform:translateY(-2px);}
+
+/* 戻るボタン */
+.reset{
+  background:none;border:none;color:var(--navy);font-size:.85rem;font-weight:700;cursor:pointer;
+  font-family:inherit;padding:6px 0 14px;display:inline-flex;align-items:center;gap:6px;
+}
+.reset:hover{text-decoration:underline;}
+
+/* タイピング表示 */
+.typing{display:flex;gap:5px;padding:15px 18px;background:var(--bot-bubble);
+  border-radius:16px;border-bottom-left-radius:5px;width:fit-content;margin-bottom:12px;}
+.typing span{width:7px;height:7px;border-radius:50%;background:#9aa2b5;animation:blink 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:.2s;}
+.typing span:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,60%,100%{opacity:.3;}30%{opacity:1;}}
+
+/* フッター */
+.w-foot{
+  padding:12px 18px 16px;text-align:center;font-size:.78rem;color:var(--ink-soft);
+  border-top:1px solid var(--edge);background:var(--white);
+}
+.w-foot a{color:var(--gold);font-weight:700;text-decoration:none;}
+.w-foot a:hover{text-decoration:underline;}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="widget">
+  <!-- ヘッダー -->
+  <div class="w-head">
+    <div class="w-logo"><img src="https://spc-jp.github.io/spc-concierge/favicon.png" alt="SPCコンシェルジュ"></div>
+    <div class="w-title">
+      <h1>SPCコンシェルジュ</h1>
+      <span>Smile Plus Consulting</span>
+    </div>
+    <button class="w-close" onclick="resetChat()" aria-label="最初に戻る">×</button>
+  </div>
+
+  <!-- チャット領域（ここにJSが描画します） -->
+  <div class="w-body" id="chat"></div>
+
+  <!-- フッター -->
+  <div class="w-foot">
+    選択肢にない場合は
+    <!-- ↓ 直接お問い合わせ先URL（お問い合わせフォーム等）に差し替え -->
+    <a href="#" target="_blank" rel="noopener">こちらから直接お問い合わせください</a>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   ■ ここだけ編集すればOK（URLを差し替えてください）
+   ============================================================ */
+const LINKS = {
+  demo:  "https://spc-jp.github.io/kaogamieru-zeirishi/",  // みらい先生デモ（設定済み）
+  yoyaku:"#",   // ← 無料相談の予約URL（Zoom / Googleフォーム 等）
+  line:  "#"    // ← 公式LINEのURL
+};
+
+/* ============================================================
+   ■ 選択肢と返答（文面を変えたい時はここを編集）
+   出口は「デモ・無料相談・LINE」の3つに集約しています
+   ============================================================ */
+const OPTIONS = [
+  {
+    label:"税理士に、まず気軽に聞いてみたい",
+    bot:"はい、どうぞ気軽に😊 いきなり電話や面談は緊張しますよね。まずは“みらい先生”に、あなたのペースでそっと聞いてみてください。",
+    cta:{ text:"みらい先生に聞いてみる", url:"demo", kind:"gold" }
+  },
+  {
+    label:"「顔の見える相談窓口」ってどんなもの？",
+    bot:"ひとことで言うと、“先生の顔と言葉で相談にのってくれるAIの窓口”です。事務所サイトに貼るだけで、24時間、やさしい相談の入口になります。実際に触るのが一番わかりやすいですよ。",
+    cta:{ text:"デモを触ってみる", url:"demo", kind:"gold" }
+  },
+  {
+    label:"うちの事務所にも作れる？費用は？",
+    bot:"はい、先生の事務所版を作れます。制作から運用まで丸ごとお任せいただけます。費用は事務所さまの状況に合わせてご相談を。まずは無料相談で、ぴったりの形を一緒に見つけましょう😊",
+    cta:{ text:"無料相談を予約する", url:"yoyaku", kind:"gold" }
+  },
+  {
+    label:"まず話だけ聞いてみたい",
+    bot:"もちろんです😊 売り込みは一切しません。先生の“強み”を一緒に見つける30分だと思ってくださいね。考えるのを、ひとりにはしませんから。",
+    cta:{ text:"無料相談を予約する（Zoom30分）", url:"yoyaku", kind:"gold" }
+  },
+  {
+    label:"LINEで気軽に質問したい",
+    bot:"LINEなら、ちょっとした疑問も気軽にどうぞ😊 その場でお返事します。",
+    cta:{ text:"公式LINEで質問する", url:"line", kind:"green" }
+  }
+];
+
+const chat = document.getElementById("chat");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function el(tag, cls, html){
+  const e = document.createElement(tag);
+  if(cls) e.className = cls;
+  if(html !== undefined) e.innerHTML = html;
+  return e;
+}
+function scrollDown(){ chat.scrollTop = chat.scrollHeight; }
+
+/* みらい先生の顔つきで返答を表示 */
+function botBubble(html){
+  const row = el("div","bot-row");
+  row.appendChild(el("div","bot-avatar"));
+  row.appendChild(el("div","bubble bot", html));
+  return row;
+}
+
+/* 最初の挨拶＋メニュー */
+function resetChat(){
+  chat.innerHTML = "";
+  chat.appendChild(botBubble("こんにちは！みらい先生の相談窓口です😊<br>どちらについて知りたいですか？"));
+  const menu = el("div","menu");
+  OPTIONS.forEach(function(opt,i){
+    const btn = el("button","menu-btn");
+    btn.innerHTML = '<span class="num">'+(i+1)+'</span>'+opt.label;
+    btn.onclick = function(){ choose(i); };
+    menu.appendChild(btn);
+  });
+  chat.appendChild(menu);
+  scrollDown();
+}
+
+/* 選択肢を押したとき */
+function choose(i){
+  const opt = OPTIONS[i];
+  chat.innerHTML = "";                                   // 会話をリセットして1問1答に
+  chat.appendChild(el("div","bubble user", opt.label));  // ユーザーの発言
+  scrollDown();
+
+  const typing = el("div","typing","<span></span><span></span><span></span>");
+  const delay = reduceMotion ? 0 : 850;
+  setTimeout(function(){ chat.appendChild(typing); scrollDown(); }, reduceMotion?0:200);
+
+  setTimeout(function(){
+    if(typing.parentNode) typing.remove();
+    chat.appendChild(botBubble(opt.bot));                // AIの返答（みらい先生の顔つき）
+    const a = el("a","cta-in "+opt.cta.kind, opt.cta.text);
+    a.href = LINKS[opt.cta.url] || "#";
+    a.target = "_blank"; a.rel = "noopener";
+    chat.appendChild(a);
+    const back = el("button","reset","↩ 最初のメニューに戻る");
+    back.onclick = resetChat;
+    chat.appendChild(back);
+    scrollDown();
+  }, delay);
+}
+
+resetChat();
+</script>
+
+</body>
+</html>

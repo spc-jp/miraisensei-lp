@@ -81,12 +81,18 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
 .hero-soft{margin-top:20px;font-size:.9rem;}
 .hero-soft a{color:var(--gold-soft);text-decoration:none;border-bottom:1px dashed rgba(233,212,122,.5);padding-bottom:3px;transition:color .15s ease;}
 .hero-soft a:hover{color:#fff;}
-.hero-face{
-  width:78px;height:78px;border-radius:50%;margin:0 auto 24px;
-  background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold));
+.hero-portrait{
+  width:172px;margin:0 auto 26px;border-radius:20px;overflow:hidden;background:#fff;
+  border:3px solid var(--gold);box-shadow:0 12px 34px rgba(0,0,0,.32);line-height:0;
+}
+.hero-portrait img{width:100%;height:auto;display:block;}
+.hero-portrait.noimg{
+  width:150px;height:150px;border-radius:50%;line-height:1;
   display:flex;align-items:center;justify-content:center;
-  font-family:"Noto Serif JP",serif;font-size:1.9rem;color:var(--navy);font-weight:700;
-  box-shadow:0 8px 24px rgba(0,0,0,.25);
+  background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold));
+}
+.hero-portrait.noimg:after{
+  content:"みらい先生";font-family:"Noto Serif JP",serif;color:var(--navy);font-weight:600;font-size:.95rem;
 }
 .btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
 .btn{
@@ -264,7 +270,7 @@ footer .fnote{margin-top:10px;font-size:.78rem;color:#8b93b0;}
 <!-- ================= ヒーロー ================= -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-face">師</div>
+    <div class="hero-portrait"><img src="https://spc-jp.github.io/spc-concierge/miraisensei.png" alt="みらい先生" onerror="this.style.display='none';this.parentElement.classList.add('noimg');"></div>
     <span class="eyebrow">士業事務所さまへ</span>
     <h1 class="serif">
       「先生の顔が見える」<br>
