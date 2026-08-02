@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>顔の見えるAI相談窓口｜士業事務所さまへ</title>
+<meta name="description" content="先生の顔が見えるAI相談窓口を、あなたの事務所に。制作から運用まで、AI実践5000時間のWebマーケターがZoomで伴走します。まずは無料相談から。">
+
+<!-- ================= フォント（Noto Serif JP / Noto Sans JP） ================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* ==== ブランドカラー（ここを変えれば全体の色が変わります） ==== */
+  --navy:#223670;
+  --navy-deep:#182a58;
+  --gold:#D0A900;
+  --gold-soft:#e9d47a;
+  --paper:#faf7f0;      /* 温かみのある背景 */
+  --card:#ffffff;
+  --ink:#2a2a2a;
+  --ink-soft:#5c5c5c;
+  --line:#e7e1d3;
+  --shadow:0 10px 30px rgba(34,54,112,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans JP",sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.9;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Noto Serif JP",serif;}
+.wrap{width:100%;max-width:960px;margin:0 auto;padding:0 22px;}
+
+/* ====== ヘッダー ====== */
+header{
+  background:var(--navy);
+  color:#fff;
+  padding:16px 0;
+  position:sticky;top:0;z-index:50;
+}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.logo{font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.05rem;letter-spacing:.04em;}
+.logo small{display:block;font-family:"Noto Sans JP";font-weight:400;font-size:.68rem;color:var(--gold-soft);letter-spacing:.12em;margin-top:2px;}
+.header-cta{
+  font-size:.85rem;font-weight:700;color:var(--navy);
+  background:var(--gold);padding:9px 16px;border-radius:999px;text-decoration:none;white-space:nowrap;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.header-cta:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(208,169,0,.35);}
+
+/* ====== ヒーロー ====== */
+.hero{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+  color:#fff;text-align:center;padding:74px 0 84px;position:relative;overflow:hidden;
+}
+.hero:before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% -10%,rgba(208,169,0,.18),transparent 55%);
+  pointer-events:none;
+}
+.hero .eyebrow{
+  display:inline-block;color:var(--gold-soft);font-size:.82rem;letter-spacing:.22em;
+  border:1px solid rgba(233,212,122,.4);padding:6px 16px;border-radius:999px;margin-bottom:26px;
+}
+.hero h1{
+  font-family:"Noto Serif JP",serif;font-weight:600;
+  font-size:2.15rem;line-height:1.55;letter-spacing:.02em;margin-bottom:22px;
+}
+.hero h1 .mark{
+  background:linear-gradient(transparent 62%,rgba(208,169,0,.55) 62%);
+  padding:0 .1em;
+}
+.hero p.lead{font-size:1.02rem;color:#e6e9f3;max-width:640px;margin:0 auto 34px;}
+.hero-face{
+  width:78px;height:78px;border-radius:50%;margin:0 auto 24px;
+  background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold));
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Noto Serif JP",serif;font-size:1.9rem;color:var(--navy);font-weight:700;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+.btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn{
+  display:inline-block;text-decoration:none;font-weight:700;border-radius:999px;
+  padding:15px 30px;font-size:1rem;transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 8px 22px rgba(208,169,0,.35);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(208,169,0,.45);}
+.btn-line{background:#06C755;color:#fff;box-shadow:0 8px 22px rgba(6,199,85,.3);}
+.btn-line:hover{transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5);}
+.btn-ghost:hover{background:rgba(255,255,255,.08);}
+
+/* ====== セクション共通 ====== */
+section{padding:70px 0;}
+.sec-eyebrow{
+  text-align:center;color:var(--gold);font-weight:700;font-size:.8rem;letter-spacing:.2em;margin-bottom:12px;
+}
+.sec-title{
+  font-family:"Noto Serif JP",serif;font-weight:600;text-align:center;
+  font-size:1.7rem;color:var(--navy);line-height:1.5;margin-bottom:14px;
+}
+.sec-title:after{
+  content:"";display:block;width:52px;height:3px;background:var(--gold);
+  margin:18px auto 0;border-radius:2px;
+}
+.sec-sub{text-align:center;color:var(--ink-soft);max-width:620px;margin:0 auto 46px;font-size:.98rem;}
+
+/* ====== 共感（お悩み） ====== */
+.pain{background:#fff;}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:760px;margin:0 auto;}
+.pain-card{
+  background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  padding:24px 22px;display:flex;gap:14px;align-items:flex-start;
+}
+.pain-card .q{
+  flex:0 0 auto;font-family:"Noto Serif JP",serif;color:var(--gold);font-size:1.5rem;font-weight:700;line-height:1;
+}
+.pain-card p{font-size:.96rem;color:var(--ink);}
+.pain-lead{text-align:center;font-size:1.05rem;color:var(--navy);font-weight:500;margin-bottom:34px;}
+
+/* ====== デモ ====== */
+.demo{background:linear-gradient(180deg,#fff 0%,var(--paper) 100%);}
+.demo-box{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;
+  box-shadow:var(--shadow);max-width:680px;margin:0 auto;padding:44px 34px;text-align:center;
+}
+.demo-box .badge{
+  display:inline-block;background:rgba(34,54,112,.07);color:var(--navy);
+  font-weight:700;font-size:.8rem;letter-spacing:.1em;padding:6px 16px;border-radius:999px;margin-bottom:18px;
+}
+.demo-box h3{font-family:"Noto Serif JP",serif;color:var(--navy);font-size:1.4rem;margin-bottom:12px;}
+.demo-box p{color:var(--ink-soft);margin-bottom:26px;}
+
+/* ====== 3つの価値 ====== */
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.value-card{
+  background:#fff;border-radius:18px;border:1px solid var(--line);padding:30px 24px;
+  box-shadow:var(--shadow);text-align:center;
+}
+.value-card .num{
+  font-family:"Noto Serif JP",serif;color:var(--gold);font-size:1.4rem;font-weight:700;
+  border:2px solid var(--gold);width:48px;height:48px;line-height:44px;border-radius:50%;
+  margin:0 auto 18px;display:block;
+}
+.value-card h4{color:var(--navy);font-size:1.08rem;margin-bottom:10px;}
+.value-card p{color:var(--ink-soft);font-size:.92rem;}
+
+/* ====== 作り手 ====== */
+.maker{background:var(--navy);color:#fff;}
+.maker .sec-title{color:#fff;}
+.maker .sec-title:after{background:var(--gold);}
+.maker-box{
+  max-width:720px;margin:0 auto;display:flex;gap:30px;align-items:center;flex-wrap:wrap;justify-content:center;
+}
+.maker-photo{
+  flex:0 0 auto;width:130px;height:130px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold));
+  display:flex;align-items:center;justify-content:center;color:var(--navy);
+  font-family:"Noto Serif JP",serif;font-size:2.4rem;font-weight:700;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+.maker-text{flex:1;min-width:260px;}
+.maker-text .name{font-family:"Noto Serif JP",serif;font-size:1.35rem;font-weight:600;margin-bottom:4px;}
+.maker-text .name small{font-size:.8rem;color:var(--gold-soft);font-weight:400;margin-left:8px;}
+.maker-text .role{color:var(--gold-soft);font-size:.9rem;margin-bottom:16px;}
+.maker-text ul{list-style:none;}
+.maker-text li{padding-left:22px;position:relative;color:#e6e9f3;font-size:.95rem;margin-bottom:8px;}
+.maker-text li:before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:700;}
+.maker-motto{
+  text-align:center;margin-top:34px;font-family:"Noto Serif JP",serif;font-size:1.15rem;color:var(--gold-soft);
+}
+
+/* ====== 料金 ====== */
+.price{background:#fff;}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:820px;margin:0 auto;}
+.price-card{
+  border:1px solid var(--line);border-radius:20px;padding:32px 24px;text-align:center;background:var(--paper);
+  position:relative;
+}
+.price-card.feature{border:2px solid var(--gold);background:#fff;box-shadow:var(--shadow);}
+.price-card .tag{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--navy);font-weight:700;font-size:.74rem;
+  padding:5px 16px;border-radius:999px;white-space:nowrap;
+}
+.price-card h4{color:var(--navy);font-size:1.05rem;margin-bottom:12px;font-family:"Noto Serif JP",serif;}
+.price-card .amount{font-size:1.7rem;color:var(--navy);font-weight:700;margin-bottom:6px;font-family:"Noto Serif JP",serif;}
+.price-card .amount small{font-size:.85rem;color:var(--ink-soft);font-weight:400;}
+.price-card p{color:var(--ink-soft);font-size:.88rem;margin-top:12px;}
+.price-note{text-align:center;color:var(--ink-soft);font-size:.9rem;margin-top:28px;}
+
+/* ====== FAQ ====== */
+.faq{background:var(--paper);}
+.faq-list{max-width:680px;margin:0 auto;}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden;}
+.faq-q{
+  padding:20px 22px;font-weight:700;color:var(--navy);cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:.98rem;
+}
+.faq-q .plus{color:var(--gold);font-size:1.4rem;transition:transform .25s ease;flex:0 0 auto;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.faq-a p{padding:0 22px 20px;color:var(--ink-soft);font-size:.94rem;}
+
+/* ====== 最後のCTA ====== */
+.final{
+  background:linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);
+  color:#fff;text-align:center;position:relative;overflow:hidden;
+}
+.final:before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 120%,rgba(208,169,0,.22),transparent 55%);
+}
+.final h2{
+  font-family:"Noto Serif JP",serif;font-weight:600;font-size:1.7rem;line-height:1.6;margin-bottom:18px;position:relative;
+}
+.final p{color:#e6e9f3;margin-bottom:34px;position:relative;}
+.final .btn-row{position:relative;}
+
+/* ====== フッター ====== */
+footer{background:var(--navy-deep);color:#c8cee0;text-align:center;padding:34px 0;font-size:.85rem;}
+footer a{color:var(--gold-soft);text-decoration:none;}
+footer .fnote{margin-top:10px;font-size:.78rem;color:#8b93b0;}
+
+/* ====== レスポンシブ ====== */
+@media(max-width:720px){
+  .hero h1{font-size:1.62rem;}
+  .sec-title{font-size:1.4rem;}
+  .pain-grid{grid-template-columns:1fr;}
+  .value-grid{grid-template-columns:1fr;}
+  .price-grid{grid-template-columns:1fr;}
+  section{padding:54px 0;}
+  .hero{padding:58px 0 66px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= ヘッダー ================= -->
+<header>
+  <div class="wrap">
+    <div class="logo">
+      顔の見えるAI相談窓口
+      <small>SMILE PLUS CONSULTING</small>
+    </div>
+    <!-- ↓ ここに無料相談の予約URL（ZoomやGoogleフォーム等）を入れてください -->
+    <a class="header-cta" href="#contact">無料相談する</a>
+  </div>
+</header>
+
+<!-- ================= ヒーロー ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-face">師</div>
+    <span class="eyebrow">士業事務所さまへ</span>
+    <h1 class="serif">
+      「先生の顔が見える」<br>
+      <span class="mark">AI相談窓口</span>を、<br>あなたの事務所に。
+    </h1>
+    <p class="lead">
+      顧問先との距離が、ぐっと縮まります。<br>
+      問い合わせの入口が、24時間ひらきます。<br>
+      制作から運用まで、AI実践5000時間のWebマーケターが、Zoomでずっと伴走します。
+    </p>
+    <div class="btn-row">
+      <!-- ↓ 無料相談の予約リンク -->
+      <a class="btn btn-gold" href="#contact">まずは無料相談（Zoom30分）</a>
+      <!-- ↓ 公式LINEのURLに差し替えてください -->
+      <a class="btn btn-line" href="#contact" target="_blank" rel="noopener">公式LINEで質問する</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 共感（お悩み） ================= -->
+<section class="pain">
+  <div class="wrap">
+    <p class="sec-eyebrow">こんなお悩み、ありませんか</p>
+    <h2 class="sec-title serif">先生、ひとりで抱えていませんか</h2>
+    <p class="sec-sub">忙しい本業のかたわらで、Webのことまで手が回らない。<br>そのお気持ち、よく分かります。</p>
+    <div class="pain-grid">
+      <div class="pain-card"><span class="q">Q</span><p>どの事務所も、サイトが同じに見えてしまう</p></div>
+      <div class="pain-card"><span class="q">Q</span><p>若い世代や、新しい顧問先の入口が弱い</p></div>
+      <div class="pain-card"><span class="q">Q</span><p>ITやAIは、正直なところ苦手…</p></div>
+      <div class="pain-card"><span class="q">Q</span><p>本業が忙しく、集客まで手が回らない</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= デモ ================= -->
+<section class="demo">
+  <div class="wrap">
+    <p class="sec-eyebrow">まずは触ってみてください</p>
+    <h2 class="sec-title serif">これが「みらい先生」です</h2>
+    <div class="demo-box">
+      <span class="badge">DEMO｜顔の見えるAI相談窓口</span>
+      <h3 class="serif">先生の事務所サイトに“貼るだけ”</h3>
+      <p>AIが、相談のやさしい入口になります。<br>実際に動くデモを、ご自身の手で試してみてください。</p>
+      <!-- ↓ みらい先生のデモURLに差し替えてください -->
+      <a class="btn btn-gold" href="#" target="_blank" rel="noopener">デモを触ってみる</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3つの価値 ================= -->
+<section>
+  <div class="wrap">
+    <p class="sec-eyebrow">なぜ、選ばれるのか</p>
+    <h2 class="sec-title serif">相談窓口が変えてくれる、3つのこと</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <span class="num">1</span>
+        <h4>相談のハードルが下がる</h4>
+        <p>いきなり電話は緊張するもの。でもAIになら、気軽に聞ける。最初の一歩が生まれます。</p>
+      </div>
+      <div class="value-card">
+        <span class="num">2</span>
+        <h4>24時間、逃さない入口</h4>
+        <p>夜でも休日でも、相談の芽を取りこぼしません。先生が眠っている間も、窓口は開いています。</p>
+      </div>
+      <div class="value-card">
+        <span class="num">3</span>
+        <h4>“先生の人柄”が伝わる</h4>
+        <p>機械的ではなく、先生らしさが伝わる設計。だから「この先生にお願いしたい」が生まれます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 作り手 ================= -->
+<section class="maker">
+  <div class="wrap">
+    <p class="sec-eyebrow">つくる人が、ずっと隣にいます</p>
+    <h2 class="sec-title serif">「設置して終わり」にはしません</h2>
+    <div class="maker-box">
+      <div class="maker-photo">松</div>
+      <div class="maker-text">
+        <div class="name serif">松本 由也<small>Matsumoto Yoshiya</small></div>
+        <div class="role">スマイルプラス・コンサルティング 代表</div>
+        <ul>
+          <li>カシオ計算機で37年、営業部門を率いた実務家</li>
+          <li>AI実践5000時間、中小企業支援ひとすじ</li>
+          <li>専門用語ぬきで、やさしく伴走します</li>
+          <li>設置後も、更新・相談・改善までずっと隣に</li>
+        </ul>
+      </div>
+    </div>
+    <p class="maker-motto serif">「考えるを、ひとりにしない」</p>
+  </div>
+</section>
+
+<!-- ================= 料金 ================= -->
+<section class="price">
+  <div class="wrap">
+    <p class="sec-eyebrow">安心の、低リスクな入口</p>
+    <h2 class="sec-title serif">料金のご案内</h2>
+    <p class="sec-sub">まずは無料相談だけ、でも大歓迎です。<br>金額は、事務所さまの状況に合わせてご相談ください。</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <h4>初回相談</h4>
+        <div class="amount">無料<small></small></div>
+        <p>Zoomで30分。強みを一緒に見つけるところから。</p>
+      </div>
+      <div class="price-card feature">
+        <span class="tag">まずはここから</span>
+        <h4>設置一式</h4>
+        <!-- ↓ 金額はご自由に調整してください -->
+        <div class="amount">◯◯万円<small>／一式</small></div>
+        <p>相談窓口の制作・設置まで、丸ごとお任せください。</p>
+      </div>
+      <div class="price-card">
+        <h4>月額運用</h4>
+        <!-- ↓ 金額はご自由に調整してください -->
+        <div class="amount">月◯万円<small>〜</small></div>
+        <p>更新・相談・コンテンツづくりまで、ずっと伴走。</p>
+      </div>
+    </div>
+    <p class="price-note">※「まずは話を聞くだけ」でもかまいません。売り込みは一切いたしません。</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq">
+  <div class="wrap">
+    <p class="sec-eyebrow">よくあるご質問</p>
+    <h2 class="sec-title serif">不安な点、お答えします</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">ITやAIが分からなくても大丈夫？ <span class="plus">+</span></div>
+        <div class="faq-a"><p>はい、まったく問題ありません。難しい設定や操作は、すべてこちらで整えます。先生は本業に集中していただけます。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">顧問先には、どう映りますか？ <span class="plus">+</span></div>
+        <div class="faq-a"><p>「先進的で、それでいて親しみやすい事務所」という印象につながります。相談しやすさが、信頼につながります。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">途中でやめたくなったら？ <span class="plus">+</span></div>
+        <div class="faq-a"><p>月額はいつでも見直し・停止が可能です。長期の縛りはありません。安心してお試しください。</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">相談すると、契約しないといけない？ <span class="plus">+</span></div>
+        <div class="faq-a"><p>いいえ。無料相談は、あくまで先生の課題を一緒に整理する時間です。その場で無理におすすめすることはありません。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 最後のCTA ================= -->
+<section class="final" id="contact">
+  <div class="wrap">
+    <h2 class="serif">先生の想いを、<br>いちばん伝わる形にしませんか。</h2>
+    <p>まずは30分、お話を聞かせてください。<br>「考える」を、ひとりにはしません。</p>
+    <div class="btn-row">
+      <!-- ↓ 無料相談の予約URL（Zoom / Googleフォーム / カレンダー予約 等） -->
+      <a class="btn btn-gold" href="#" target="_blank" rel="noopener">無料相談を予約する（Zoom）</a>
+      <!-- ↓ 公式LINEのURL -->
+      <a class="btn btn-line" href="#" target="_blank" rel="noopener">公式LINEで質問する</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= フッター ================= -->
+<footer>
+  <div class="wrap">
+    スマイルプラス・コンサルティング　代表 松本 由也<br>
+    <a href="https://smileplusctg.com" target="_blank" rel="noopener">smileplusctg.com</a>
+    <div class="fnote">中小企業の宝探し ─ 考えるを、ひとりにしない</div>
+  </div>
+</footer>
+
+<script>
+// FAQアコーディオン
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click', function(){
+    var item = q.parentElement;
+    var ans = item.querySelector('.faq-a');
+    var open = item.classList.toggle('open');
+    ans.style.maxHeight = open ? ans.scrollHeight + 'px' : null;
+  });
+});
+</script>
+
+</body>
+</html>
