@@ -186,10 +186,11 @@ section{padding:70px 0;}
   max-width:720px;margin:0 auto;display:flex;gap:30px;align-items:center;flex-wrap:wrap;justify-content:center;
 }
 .maker-photo{
-  flex:0 0 auto;width:130px;height:130px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold));
-  display:flex;align-items:center;justify-content:center;color:var(--navy);
-  font-family:"Noto Serif JP",serif;font-size:2.4rem;font-weight:700;
+  flex:0 0 auto;width:130px;height:130px;border-radius:50%;overflow:hidden;
+  border:3px solid var(--gold-soft);
+  background-color:#fff;background-repeat:no-repeat;
+  background-image:url("yoshibon.png");
+  background-size:150%;background-position:50% 8%;
   box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 .maker-text{flex:1;min-width:260px;}
@@ -369,7 +370,7 @@ footer .fnote{margin-top:10px;font-size:.78rem;color:#8b93b0;}
     <p class="sec-eyebrow">つくる人が、ずっと隣にいます</p>
     <h2 class="sec-title serif">「設置して終わり」にはしません</h2>
     <div class="maker-box">
-      <div class="maker-photo">松</div>
+      <div class="maker-photo" role="img" aria-label="松本 由也"></div>
       <div class="maker-text">
         <div class="name serif">松本 由也<small>Matsumoto Yoshiya</small></div>
         <div class="role">スマイルプラス・コンサルティング 代表</div>
